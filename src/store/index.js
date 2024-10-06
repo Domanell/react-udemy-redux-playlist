@@ -1,4 +1,7 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore, createSlice, createAction } from '@reduxjs/toolkit';
+
+// Create custom action (outside slice)
+const reset = createAction('app/reset');
 
 // Slice creation (piece of state of store)
 const songsSlice = createSlice({
@@ -15,8 +18,9 @@ const songsSlice = createSlice({
 		},
 	},
 	extraReducers(builder) {
-		builder.addCase(movieSlice.actions.reset, (state, action) => {
-			return [];
+		// reset in add case is 'app/reset'
+		builder.addCase(reset, (state, action) => {
+			return []; // assign value of an empty array
 		});
 	},
 });
@@ -32,9 +36,11 @@ const movieSlice = createSlice({
 			const index = state.indexOf(action.payload);
 			state.splice(index, 1);
 		},
-		reset(state, action) {
+	},
+	extraReducers(builder) {
+		builder.addCase(reset, (state, action) => {
 			return [];
-		},
+		});
 	},
 });
 
@@ -46,6 +52,6 @@ const store = configureStore({
 	},
 });
 
-export { store };
+export { store, reset };
 export const { addSong, removeSong } = songsSlice.actions;
-export const { addMovie, removeMovie, reset } = movieSlice.actions;
+export const { addMovie, removeMovie } = movieSlice.actions;
