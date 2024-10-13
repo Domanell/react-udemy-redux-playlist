@@ -12,3 +12,25 @@ const store = configureStore({
 });
 
 export { store, reset, addSong, removeSong, addMovie, removeMovie };
+
+/*
+	configureStore
+	└── reducer
+	    ├── songs                      // Reducer for the songs slice (songsSlice)
+	    │   ├── name: 'song'           // Name of the slice
+	    │   ├── initialState: []       // Initial state (empty array)
+	    │   ├── reducers               // Main actions
+	    │   │   ├── addSong(state, action)   // Adding a song
+	    │   │   └── removeSong(state, action) // Removing a song
+	    │   └── extraReducers          // Additional reducers
+	    │       └── addCase(reset)     // Handler for the "reset" action
+	    └── movies                     // Reducer for the movies slice (moviesSlice)
+	        ├── name: 'movie'          // Name of the slice
+	        ├── initialState: []       // Initial state (empty array)
+	        ├── reducers               // Main actions
+	        │   ├── addMovie(state, action)   // Adding a movie
+	        │   └── removeMovie(state, action) // Removing a movie
+	        └── extraReducers          // Additional reducers
+	            └── addCase(reset)     // Handler for the "reset" action
+	
+*/
